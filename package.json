@@ -1,0 +1,27 @@
+{
+  "name": "myblogapp",
+  "version": "1.0.0",
+  "description": "This is my blog app with my resume",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehmetpdf/myBlogApp.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "mehmet.yilmaz2@outlook.com.tr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehmetpdf/myBlogApp/issues"
+  },
+  "homepage": "https://github.com/mehmetpdf/myBlogApp#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.0"
+  }
+}
