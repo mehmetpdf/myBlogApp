@@ -52,8 +52,8 @@ router.get("/testing", (req, res) => {
 });
 
 function isLoggedIn(req, res, next){
-    if(req.isAuthenticadet()){
-        return next;
+    if(req.isAuthenticated()){
+        return next();
     } else {
         res.redirect("/sign");
     }
