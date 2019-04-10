@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+
+<!-- Page Header -->
+<header class="masthead"
+    style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-57304.jpg)">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>Admin Dashboard</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="container">
+    <% adminActions.forEach( (action) => { %>
+    <div class="row">
+        <div class="col-lg-4 mx-auto">
+            <button type="button" id="<%=action.actionId%>" onclick="catchID(this.id)" class="btn btn-outline-primary btn-block"><%=action.displayName%></button>
+        </div>
+
+        <div class="col-lg-8 mx-auto">
+        </div>
+
+    </div>
+    <% }); %>
+</div>
+
+<script>
+    function catchID(clicked_id) {
+        alert(clicked_id);
+        if (clicked_id == 1) {
+            window.location.href = "changeHomeImage"; return false;
+        } else if (clicked_id == 4) {
+            window.location.href = "addNewBlog"; return false;
+        } 
+        
+    }
+</script>
+
+<% include ../partials/footer %>
