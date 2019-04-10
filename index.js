@@ -1,9 +1,11 @@
 const express       = require("express");
 const app           = express();
 const mongoose      = require("mongoose");
+const bodyParser    = require("body-parser");
 
 // Routes
 const indexRoutes = require("./routes/indexRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 
 // App Config
@@ -13,6 +15,7 @@ app.use(express.static("public"));
 
 // Routes Using
 app.use(indexRoutes);
+app.use(adminRoutes);
 
 // ===================== *SERVER* ==========================
 const server = app.listen(3000, (err) => {
