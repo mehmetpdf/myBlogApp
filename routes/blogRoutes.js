@@ -7,7 +7,6 @@ router.get("/addNewBlog", isLoggedIn, (req, res) => {
 });
 
 router.post("/addNewBlog", isLoggedIn, (req, res) => {
-    
     let title   = req.body.data.blogTitle;
     let comSentence = req.body.data.comSentence;
     let comImage   = req.body.data.blogImage;
@@ -53,6 +52,18 @@ router.get("/editBlog/:blogId", isLoggedIn, (req, res) => {
         })
 });
 
+router.put("/editBlog/:id", isLoggedIn, (req, res) => {
+
+    console.log("%%%%%%%%%%% + " + req.body.blog.blog)
+
+   Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+       if(err){
+           console.log(err);
+       } else {
+           res.redirect("/");
+       }
+   });
+});
 
 router.get("/deleteBlog/:blogId", isLoggedIn, (req, res) => {
     Blog.findById(req.params.blogId)
@@ -82,9 +93,7 @@ router.get("/deleteBlog/:blogId", isLoggedIn, (req, res) => {
         })
 });
 
-router.post("/")
-
-router.get('/blogs/:blogId', isLoggedIn, (req, res) => {
+router.get('/blogs/:blogId', (req, res) => {
     Blog.findById(req.params.blogId)
         .then ((foundBlog) => {
             res.render("blog/showBlog", {foundBlog:foundBlog});

@@ -6,6 +6,7 @@ const passport      = require("passport");
 const LocalStrategy = require("passport-local");
 const expressSession= require("express-session");
 const User          = require("./models/userModel");
+const methodOverride= require("method-override");
 
 // Routes
 const indexRoutes = require("./routes/indexRoutes");
@@ -16,7 +17,8 @@ const blogRoutes = require("./routes/blogRoutes");
 mongoose.connect("mongodb://localhost/BlogApp")
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 // Pasword Config
 app.use(require("express-session")({
