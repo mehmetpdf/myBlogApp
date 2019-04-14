@@ -2,7 +2,7 @@
 
 <!-- Page Header -->
 <header class="masthead"
-  style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-18339.jpg)">
+  style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-18339.jpg);">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -21,10 +21,10 @@
 
   <% foundBlogs.forEach( (blog) => { %>
     <div class="row">
-      <div class="col-lg-3 mx-auto">
+      <div class="col-lg-2 mx-auto">
         <img class="img-thumbnail" src="<%=blog.comImage%>" alt="blog images">
       </div>
-      <div class="col-lg-9 col-md-10 mx-auto">
+      <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
           <a href="/blogs/<%=blog._id%>">
             <h2 class="post-title">
@@ -34,13 +34,20 @@
               <%= blog.comSentence %>
             </h3>
           </a>
-          <p class="post-meta">Posteddd by
-            <a href="#">Start Bootstrap</a>
+          <p class="post-meta">Posted by
+            <a href="#"><%=blog.author%></a>
+
             <%= blog.date %></p>
         </div>
-        <hr>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <%if(currentUser){%>
+          <button type="button" id="editBlog" onclick="actionPost(this.id, '<%= blog._id %>')" class="btn btn-outline-primary" style="width: 150px">Edit</button>
+          <button type="button" id="deleteBlog" onclick="actionPost(this.id, '<%= blog._id %>')" class="btn btn-outline-danger" style="width: 150px">Delete</button>
+        <%}%>
       </div>
     </div>
+    <hr>
   <% }); %>
   <!-- Pager -->
   <div class="clearfix">
@@ -49,5 +56,16 @@
 </div>
 
 <hr>
+
+<script>
+  function actionPost(clickedID, blogId){
+    alert(clickedID + " - " + blogId);
+    if(clickedID == "editBlog"){
+      window.location.href = "/editBlog/"+blogId; return false;
+    } else if (clickedID == "deleteBlog"){
+      window.location.href = "/deleteBlog/"+blogId; return false;
+    }
+  };
+</script>
 
 <% include ./partials/footer %>

@@ -2,6 +2,7 @@ const express       = require("express");
 const router        = express.Router();     //Bu route'yi yani file'i extarct etmeye yarayacak..
 const User          = require("../models/userModel");
 const passport      = require("passport");
+const Blog          = require("../models/blogModel");
 
 let adminActions = [
     {
@@ -68,6 +69,21 @@ router.get("/signout", (req, res) => {
     req.logOut();
     res.redirect("/");
 })
+
+router.post("/home", (req, res) => {
+    Blog.find({}, (err, foundBlogs) => { // find({}) -> Tum Bloglari Al
+        if(err){
+            console.log("================================ERROR ERROR ERROR================================ ");
+            console.log(err);
+        } else {
+            console.log("================================ALL BLOGS================================ ");
+            console.log(foundBlogs);
+            res.render("home", {foundBlogs:foundBlogs});
+        }
+    })
+
+     // bu saydaki degislen isim : alinacak degisken sayfadaki 
+});
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){

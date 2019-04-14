@@ -8,12 +8,18 @@
             var comSentence     = $("#comSentence").val();
             var blogImage       = $("#blogImage").val();
             var blog            = CKEDITOR.instances.myTextArea.getData();
+            var author          = $("#author").val();
+
+            if(blogImage == ""){
+                blogImage = "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_960_720.jpg";
+            }
 
             var data = {
                 blogTitle : blogTitle,
                 comSentence : comSentence,
                 blogImage : blogImage,
-                blog : blog
+                blog : blog,
+                author : author
             }
 
             $.post("addNewBlog", {data:data})
@@ -42,7 +48,7 @@
 
 <div class="container">
     <h2 style="text-align:center; margin-bottom:40px;">Add New Blog</h2>
-    <form action="/signin" method="POST" class="text-center border border-light p-5">
+    <form action="/home" method="POST" class="text-center border border-light p-5">
         <div class="form-group">
             <label for="blogTitle">Blog Title</label>
             <input type="text" class="form-control" id="blogTitle" placeholder="Blog Title">
@@ -54,6 +60,10 @@
         <div class="form-group">
             <label for="comImage">Blog Commercial Image URL</label>
             <input type="text" class="form-control" id="blogImage" placeholder="Blog Commercial Image URL">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input class="form-control" type="text" id="author" placeholder="Readonly input here…" value="<%= currentUser.username %>" readonly>
         </div>
         <textarea name="editor" id="myTextArea"></textarea>
         <button id="myButton" class="btn btn-primary">Submit</button>
