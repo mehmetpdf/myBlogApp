@@ -2,12 +2,12 @@ const mongoose      = require("mongoose");
 
 const BlogSchema = new mongoose.Schema({
     
-    title           : {type: String, required:"Cannot be empty"},    
-    comSentence     : {type: String, required:"Cannot be empty"},
+    title           : {type: String},    
+    comSentence     : {type: String},
     comImage        : {type: String},
-    blog            : {type: String, required:"Cannot be empty"},
+    blog            : {type: String},
     date            : {type: Date,   default: Date.now},
-    author          : {type: String},
+    author          : {type: String}
     
 });
 

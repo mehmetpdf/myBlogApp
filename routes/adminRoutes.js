@@ -7,26 +7,21 @@ const Blog          = require("../models/blogModel");
 let adminActions = [
     {
         actionId : 1,
-        actionName : "changeHomeImage",
-        displayName : "Change Home Image"
+        actionName : "editAbout",
+        displayName : "Change About Page"
     },
     {
         actionId : 2,
-        actionName : "changeAboutImage",
-        displayName : "Change About Image"
-    },
-    {
-        actionId : 3,
         actionName : "changeAboutText",
         displayName : "Change About Text"
     },
     {
-        actionId : 4,
+        actionId : 3,
         actionName : "addNewBlog",
         displayName : "Add New Blog"
     },
     {
-        actionId : 5,
+        actionId : 4,
         actionName : "listAllBlog",
         displayName : "List All Blog"
     }

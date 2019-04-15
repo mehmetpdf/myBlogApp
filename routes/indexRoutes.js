@@ -1,6 +1,7 @@
 const express       = require("express");
 const router        = express.Router();     //Bu route'yi yani file'i extarct etmeye yarayacak..
 const Blog          = require("../models/blogModel");
+const About         = require("../models/aboutModel");
 
 router.get("/", (req, res) => {
     Blog.find({}, (err, foundBlogs) => { // find({}) -> Tum Bloglari Al
@@ -18,7 +19,16 @@ router.get("/", (req, res) => {
 });
 
 router.get("/about", (req, res) => {
-    res.render("about"); 
+    About.findOne({}, (err, foundAbout) => {
+        if(err){
+            console.log(foundAbout);
+            res.status(404).json(foundAbout);
+            res.redirect("home");
+        } else {
+            console.log(foundAbout);
+            res.render("about", {foundAbout:foundAbout} ); // bu saydaki degislen isim : alinacak degisken sayfadaki 
+        }
+    });
 });
 
 router.get("/contact", (req, res) => {

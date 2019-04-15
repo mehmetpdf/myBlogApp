@@ -12,6 +12,7 @@ const methodOverride= require("method-override");
 const indexRoutes = require("./routes/indexRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const siteRoutes = require("./routes/siteRoutes");
 
 // App Config
 mongoose.connect("mongodb://localhost/BlogApp")
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
 app.use(indexRoutes);
 app.use(adminRoutes);
 app.use(blogRoutes);
+app.use(siteRoutes)
 
 // ===================== *SERVER* ==========================
 const server = app.listen(3000, (err) => {

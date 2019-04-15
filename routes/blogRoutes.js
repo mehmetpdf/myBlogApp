@@ -7,11 +7,11 @@ router.get("/addNewBlog", isLoggedIn, (req, res) => {
 });
 
 router.post("/addNewBlog", isLoggedIn, (req, res) => {
-    let title   = req.body.data.blogTitle;
+    let title       = req.body.data.blogTitle;
     let comSentence = req.body.data.comSentence;
-    let comImage   = req.body.data.blogImage;
+    let comImage    = req.body.data.blogImage;
     let blog        = req.body.data.blog;
-    let author        = req.body.data.author;
+    let author      = req.body.data.author;
 
     let newBlog = { title:title, comSentence:comSentence, comImage:comImage, blog:blog, author:author };
 
@@ -53,9 +53,6 @@ router.get("/editBlog/:blogId", isLoggedIn, (req, res) => {
 });
 
 router.put("/editBlog/:id", isLoggedIn, (req, res) => {
-
-    console.log("%%%%%%%%%%% + " + req.body.blog.blog)
-
    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
        if(err){
            console.log(err);

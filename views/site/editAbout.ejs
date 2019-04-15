@@ -1,0 +1,80 @@
+<% include ../partials/header %>
+
+<script>
+    $(document).ready(function(){
+
+        $("#myButton").click(function(){
+            var aboutImage       = $("#aboutImage").val();
+            var aboutText        = CKEDITOR.instances.myTextArea.getData();
+            var author           = $("#author").val();
+            var comSentence      = $("#comSentence").val();
+            var aboutTitle      = $("#aboutTitle").val();
+
+            if(aboutImage == ""){
+                aboutImage = "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_960_720.jpg";
+            }
+
+            var data = {
+                aboutTitle : aboutTitle,
+                aboutImage : aboutImage,
+                aboutText : aboutText,
+                author : author,
+                comSentence : comSentence
+            }
+
+            $.post("editAbout", {data:data})
+                .then(function(addedAbout){
+                    console.log(addedAbout);
+                });
+        });
+    });
+</script>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="masthead"
+        style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-18339.jpg)">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align:center; margin-bottom:10px;">Edit About</h2>
+        <form action="/home" method="POST" class="text-center border border-light p-5">
+            <div class="form-group">
+                <label for="blogTitle">Blog Title</label>
+                <input type="text" class="form-control" id="aboutTitle" placeholder="Blog Title"
+                    value="<%=foundAbout.aboutTitle%>">
+            </div>
+            <div class="form-group">
+                <label for="aboutImage">About Page Image URL</label>
+                <input type="text" class="form-control" id="aboutImage" placeholder="About Page Image URL" value="<%=foundAbout.aboutImage%>">
+            </div>
+            <div class="form-group">
+                <label for="aboutImage">About Commercial Sentence</label>
+                <input type="text" class="form-control" id="comSentence" placeholder="About Commercial Sentence" value="<%=foundAbout.comSentence%>">
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input class="form-control" type="text" id="author" placeholder="Readonly input here…" value="<%= currentUser.username %>" readonly>
+            </div>
+            <textarea name="aboutText" id="myTextArea"><%=foundAbout.aboutText%></textarea>
+            <button id="myButton" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('aboutText');
+    </script>
+
+<% include ../partials/footer %>
