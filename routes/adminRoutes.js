@@ -12,8 +12,8 @@ let adminActions = [
     },
     {
         actionId : 2,
-        actionName : "changeAboutText",
-        displayName : "Change About Text"
+        actionName : "editContact",
+        displayName : "Change Contact Page"
     },
     {
         actionId : 3,
@@ -24,6 +24,16 @@ let adminActions = [
         actionId : 4,
         actionName : "listAllBlog",
         displayName : "List All Blog"
+    },
+    {
+        actionId : 5,
+        actionName : "editResume",
+        displayName : "Change Resume"
+    },
+    {
+        actionId : 6,
+        actionName : "listAllMessages",
+        displayName : "List All Message"
     }
 ];
 

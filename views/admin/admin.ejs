@@ -33,13 +33,18 @@
 
 <script>
     function catchID(clicked_id) {
-        alert(clicked_id);
         if (clicked_id == 1) {
             window.location.href = "editAbout"; return false;
+        } else if (clicked_id == 2) {
+            window.location.href = "editContact"; return false;
         } else if (clicked_id == 3) {
             window.location.href = "addNewBlog"; return false;
         } else if( clicked_id == 4) {
             window.location.href = "listAllBlog"; return false;
+        } else if( clicked_id == 5) {
+            window.location.href = "editResume"; return false;
+        } else if( clicked_id == 6) {
+            window.location.href = "listAllMessages"; return false;
         }
         
     }
