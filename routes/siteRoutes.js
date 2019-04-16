@@ -129,14 +129,13 @@ router.post("/editContact", isLoggedIn, (req, res) => {
 
 router.get("/listAllMessages", isLoggedIn, (req, res) => {
     Message.find({}, (err, foundMessages) => {
-        if(err){
+        if(err) {
             console.log(err);
             res.sendStatus(404).json(foundMessages);
         } else {
-            res.redirect("site/listAllMessages");
+            res.render("site/listAllMessages", {foundMessages:foundMessages});
         }
     });
-    
 });
 
 router.post("/sendMessage", (req, res) => { 
