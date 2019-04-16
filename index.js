@@ -5,6 +5,7 @@ const bodyParser    = require("body-parser");
 const passport      = require("passport");
 const LocalStrategy = require("passport-local");
 const expressSession= require("express-session");
+const dotenv = require('dotenv');
 const User          = require("./models/userModel");
 const methodOverride= require("method-override");
 
@@ -14,8 +15,11 @@ const adminRoutes = require("./routes/adminRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const siteRoutes = require("./routes/siteRoutes");
 
+
 // App Config
-mongoose.connect("mongodb://localhost/BlogApp")
+dotenv.config();
+console.log(`Your mongodb server address is ${process.env.MONGODB_STRING}`);
+mongoose.connect(process.env.MONGODB_STRING, { useNewUrlParser: true });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
