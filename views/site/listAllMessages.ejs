@@ -1,2 +1,14 @@
+<% include ../partials/header2 %>
 
-    TEST
+<% foundMessages.forEach( (message) => {%>
+
+    <%=message.name%> <br>
+    <%=message.email%><br>
+    <%=message.phone%><br>
+    <%=message.message%><br>
+    <%=message.date%><br>
+<br><br><br><br>
+<%}); %>
+
+
+<% include ../partials/footer %>

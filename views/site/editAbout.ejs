@@ -14,18 +14,20 @@
                 aboutImage = "https://picsum.photos/1920/1080/?random";
             }
 
-            var data = {
-                aboutTitle : aboutTitle,
-                aboutImage : aboutImage,
-                aboutText : aboutText,
-                author : author,
-                comSentence : comSentence
-            }
+            if (aboutTitle !== "" && comSentence !== "") {
+                var data = {
+                    aboutTitle: aboutTitle,
+                    aboutImage: aboutImage,
+                    aboutText: aboutText,
+                    author: author,
+                    comSentence: comSentence
+                }
 
-            $.post("editAbout", {data:data})
-                .then(function(addedAbout){
-                    console.log(addedAbout);
-                });
+                $.post("editAbout", {data: data})
+                    .then(function (addedAbout) {
+                        console.log(addedAbout);
+                    });
+            }
         });
     });
 </script>
@@ -34,11 +36,12 @@
 
     <div class="container">
         <h2 style="text-align:center; margin-bottom:10px;">Edit About</h2>
-        <form action="/home" method="POST" class="text-center border border-light p-5">
+        <form action="/home" method="POST" class="needs-validation" novalidate>
             <div class="form-group">
                 <label for="blogTitle">About Title</label>
-                <input type="text" class="form-control" id="aboutTitle" placeholder="About Title"
-                    value="<%=foundAbout.aboutTitle%>">
+                <input type="text" class="form-control" id="aboutTitle" placeholder="About Title" value="<%=foundAbout.aboutTitle%>" required>
+                <div class="invalid-feedback"> Don't Be Invalid </div>
+                <div class="valid-feedback"> Looks good! </div>
             </div>
             <div class="form-group">
                 <label for="aboutImage">About Page Image URL</label>
@@ -46,13 +49,17 @@
             </div>
             <div class="form-group">
                 <label for="comSentence">About Commercial Sentence</label>
-                <input type="text" class="form-control" id="comSentence" placeholder="About Commercial Sentence" value="<%=foundAbout.comSentence%>">
+                <input type="text" class="form-control" id="comSentence" placeholder="About Commercial Sentence" value="<%=foundAbout.comSentence%>" required>
+                <div class="invalid-feedback"> Don't Be Invalid </div>
+                <div class="valid-feedback"> Looks good! </div>
             </div>
             <div class="form-group">
                 <label for="author">Author</label>
                 <input class="form-control" type="text" id="author" placeholder="Readonly input here…" value="<%= currentUser.username %>" readonly>
             </div>
             <textarea name="aboutText" id="myTextArea"><%=foundAbout.aboutText%></textarea>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
             <button id="myButton" class="btn btn-primary">Submit</button>
         </form>
     </div>
