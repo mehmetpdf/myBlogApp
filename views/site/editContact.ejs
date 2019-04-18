@@ -1,4 +1,4 @@
-<% include ../partials/header %>
+<% include ../partials/header2 %>
 
 <script>
     $(document).ready(function(){
@@ -11,7 +11,7 @@
             var contactTitle      = $("#contactTitle").val();
 
             if(contactImage == ""){
-                contactImage = "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_960_720.jpg";
+                contactImage = "https://picsum.photos/1920/1080/?random";
             }
 
             var data = {
@@ -31,22 +31,6 @@
 </script>
 
 <body>
-
-    <!-- Page Header -->
-    <header class="masthead"
-        style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-18339.jpg)">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <div class="container">
         <h2 style="text-align:center; margin-bottom:10px;">Edit Contact</h2>

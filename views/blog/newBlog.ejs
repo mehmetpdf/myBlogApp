@@ -1,4 +1,4 @@
-<% include ../partials/header %>
+<% include ../partials/header2 %>
 
 <script>
     $(document).ready(function(){
@@ -11,7 +11,7 @@
             var author          = $("#author").val();
 
             if(blogImage == ""){
-                blogImage = "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_960_720.jpg";
+                blogImage = "https://picsum.photos/1920/1080/?random";
             }
 
             var data = {
@@ -29,22 +29,6 @@
         });
     });
 </script>
-
-<!-- Page Header -->
-<header class="masthead"
-    style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-18339.jpg)">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 
 <div class="container">
     <h2 style="text-align:center; margin-bottom:40px;">Add New Blog</h2>
@@ -70,8 +54,32 @@
 
     </form>
 </div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
 <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace( 'editor' );
 </script>
 <% include ../partials/footer %>
+
+
