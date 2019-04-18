@@ -1,45 +1,51 @@
 <% include ../partials/header2 %>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $("#myButton").click(function(){
-            var blogTitle       = $("#blogTitle").val();
-            var comSentence     = $("#comSentence").val();
-            var blogImage       = $("#blogImage").val();
-            var blog            = CKEDITOR.instances.myTextArea.getData();
-            var author          = $("#author").val();
+        $("#myButton").click(function () {
+            var blogTitle = $("#blogTitle").val();
+            var comSentence = $("#comSentence").val();
+            var blogImage = $("#blogImage").val();
+            var blog = CKEDITOR.instances.myTextArea.getData();
+            var author = $("#author").val();
 
-            if(blogImage == ""){
+            if (blogImage == "") {
                 blogImage = "https://picsum.photos/1920/1080/?random";
             }
 
-            var data = {
-                blogTitle : blogTitle,
-                comSentence : comSentence,
-                blogImage : blogImage,
-                blog : blog,
-                author : author
-            }
+            if (blogTitle !== "" && comSentence !== "") {
+                var data = {
+                    blogTitle: blogTitle,
+                    comSentence: comSentence,
+                    blogImage: blogImage,
+                    blog: blog,
+                    author: author
+                }
 
-            $.post("addNewBlog", {data:data})
-                .then(function(addedBlog){
-                    console.log(addedBlog);
-                });
+                $.post("addNewBlog", {data: data})
+                    .then(function (addedBlog) {
+                        console.log(addedBlog);
+                    });
+            }
         });
     });
 </script>
 
 <div class="container">
     <h2 style="text-align:center; margin-bottom:40px;">Add New Blog</h2>
-    <form action="/home" method="POST" class="text-center border border-light p-5">
+    <form action="/home" method="POST" class="needs-validation" novalidate>
         <div class="form-group">
             <label for="blogTitle">Blog Title</label>
-            <input type="text" class="form-control" id="blogTitle" placeholder="Blog Title">
+            <input type="text" class="form-control" id="blogTitle" placeholder="Blog Title" required>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
         </div>
         <div class="form-group">
             <label for="comSentence">Blog Commercial Sentence</label>
-            <input type="text" class="form-control" id="comSentence" placeholder="Blog Commercial Sentence">
+            <input type="text" class="form-control" id="comSentence" placeholder="Blog Commercial Sentence" required>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
         </div>
         <div class="form-group">
             <label for="comImage">Blog Commercial Image URL</label>
@@ -50,35 +56,14 @@
             <input class="form-control" type="text" id="author" placeholder="Readonly input here…" value="<%= currentUser.username %>" readonly>
         </div>
         <textarea name="editor" id="myTextArea"></textarea>
-        <button id="myButton" class="btn btn-primary">Submit</button>
-
+        <button id="myButton" class="btn btn-primary" type="submit">Submit form</button>
     </form>
 </div>
 
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 
 <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'editor' );
+    CKEDITOR.replace('editor');
 </script>
 <% include ../partials/footer %>
 
