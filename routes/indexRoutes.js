@@ -26,6 +26,16 @@ router.get("/about", (req, res) => {
             res.status(404).json(foundAbout);
             res.redirect("home");
         } else {
+            if(foundAbout == null) {
+                foundAbout = {
+                    aboutTitle : "",
+                    aboutImage : "",
+                    aboutText : "",
+                    date : Date.now,
+                    comSentence : "",
+                    author : req.user.username
+                }
+            }
             console.log(foundAbout);
             res.render("about", {foundAbout:foundAbout} ); // bu saydaki degislen isim : alinacak degisken sayfadaki 
         }
@@ -39,6 +49,16 @@ router.get("/contact", (req, res) => {
             res.status(404).json(foundContact);
             res.redirect("home");
         } else {
+            if(foundContact == null) {
+                foundContact = {
+                    contactTitle : "",
+                    contactImage : "",
+                    contactText : "",
+                    date : Date.now,
+                    comSentence : "",
+                    author : req.user.username
+                }
+            }
             console.log(foundContact);
             res.render("contact", {foundContact:foundContact} ); // bu saydaki degislen isim : alinacak degisken sayfadaki 
         }
