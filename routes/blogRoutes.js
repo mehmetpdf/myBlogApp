@@ -53,7 +53,14 @@ router.get("/editBlog/:blogId", isLoggedIn, (req, res) => {
 });
 
 router.put("/editBlog/:id", isLoggedIn, (req, res) => {
-   Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+    let title       = req.body.data.blogTitle;
+    let comSentence = req.body.data.comSentence;
+    let comImage    = req.body.data.blogImage;
+    let blog        = req.body.data.blog;
+
+    let editBlog = { title:title, comSentence:comSentence, comImage:comImage, blog:blog};
+
+   Blog.findByIdAndUpdate(req.params.id, editBlog, (err, updatedBlog) => {
        if(err){
            console.log(err);
        } else {

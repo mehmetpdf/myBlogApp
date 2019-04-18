@@ -1,31 +1,84 @@
 <% include ../partials/header2 %>
 
-<body>
-    <div class="container">
-        <h2 style="text-align:center; margin-bottom:10px;">Edit Blog</h2>
-        <form action="/editBlog/<%=foundBlog._id%>?_method=PUT" method="POST" class="text-center border border-light p-5">
-            <div class="form-group">
-                <label for="blogTitle">Blog Title</label>
-                <input type="text" class="form-control" name="blog[title]" placeholder="Blog Title"
-                    value="<%=foundBlog.title%>">
-            </div>
-            <div class="form-group">
-                <label for="comSentence">Blog Commercial Sentence</label>
-                <input type="text" class="form-control" name="blog[comSentence]" placeholder="Blog Commercial Sentence"
-                    value="<%=foundBlog.comSentence%>">
-            </div>
-            <div class="form-group">
-                <label for="comImage">Blog Commercial Image URL</label>
-                <input type="text" class="form-control" name="blog[comImage]" placeholder="Blog Commercial Image URL"
-                    value="<%=foundBlog.comImage%>">
-            </div>
-            <textarea name="blog[blog]" id="myTextArea"><%=foundBlog.blog%></textarea>
-            <button id="myButton" class="btn btn-primary">Submit</button>
+<script>
+    $(document).ready(function () {
 
-        </form>
-    </div>
+        $("#myButton").click(function () {
+            var blogTitle   = $("#blogTitle").val();
+            var comSentence = $("#comSentence").val();
+            var blogImage   = $("#blogImage").val();
+            var blog        = CKEDITOR.instances.myTextArea.getData();
+
+            if (blogImage === "") {
+                blogImage = "https://picsum.photos/1920/1080/?random";
+            }
+
+            if (blogTitle !== "" && comSentence !== "") {
+                var data = {
+                    blogTitle: blogTitle,
+                    comSentence: comSentence,
+                    blogImage: blogImage,
+                    blog: blog,
+                }
+
+                $.post("/editBlog/<%=foundBlog._id%>?_method=PUT", {data: data})
+                    .then(function (addedBlog) {
+                        console.log(addedBlog);
+                    });
+            }
+        });
+    });
+</script>
+
+<div class="container">
+    <h2 style="text-align:center; margin-bottom:40px;">Edit Blog</h2>
+    <form action="/" method="PUT" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="blogTitle">Blog Title</label>
+            <input type="text" class="form-control" id="blogTitle" placeholder="Blog Title" value="<%=foundBlog.title%>" required>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
+        </div>
+        <div class="form-group">
+            <label for="comSentence">Blog Commercial Sentence</label>
+            <input type="text" class="form-control" id="comSentence" placeholder="Blog Commercial Sentence" value="<%=foundBlog.comSentence%>" required>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
+        </div>
+        <div class="form-group">
+            <label for="comImage">Blog Commercial Image URL</label>
+            <input type="text" class="form-control" id="blogImage" placeholder="Blog Commercial Image URL" value="<%=foundBlog.comImage%>">
+        </div>
+        <textarea name="editor" id="myTextArea"><%=foundBlog.blog%></textarea>
+        <button id="myButton" class="btn btn-primary" type="submit">Submit form</button>
+    </form>
+</div>
+
+<!--    <div class="container">-->
+<!--        <h2 style="text-align:center; margin-bottom:10px;">Edit Blog</h2>-->
+<!--        <form action="/editBlog/<%=foundBlog._id%>?_method=PUT" method="POST" class="text-center border border-light p-5">-->
+<!--            <div class="form-group">-->
+<!--                <label for="blogTitle">Blog Title</label>-->
+<!--                <input type="text" class="form-control" name="blog[title]" placeholder="Blog Title"-->
+<!--                    value="<%=foundBlog.title%>">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="comSentence">Blog Commercial Sentence</label>-->
+<!--                <input type="text" class="form-control" name="blog[comSentence]" placeholder="Blog Commercial Sentence"-->
+<!--                    value="<%=foundBlog.comSentence%>">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="comImage">Blog Commercial Image URL</label>-->
+<!--                <input type="text" class="form-control" name="blog[comImage]" placeholder="Blog Commercial Image URL"-->
+<!--                    value="<%=foundBlog.comImage%>">-->
+<!--            </div>-->
+<!--            <textarea name="blog[blog]" id="myTextArea"><%=foundBlog.blog%></textarea>-->
+<!--            <button id="myButton" class="btn btn-primary">Submit</button>-->
+
+<!--        </form>-->
+<!--    </div>-->
     <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('blog[blog]');
+        CKEDITOR.replace('editor');
     </script>
     <% include ../partials/footer %>
