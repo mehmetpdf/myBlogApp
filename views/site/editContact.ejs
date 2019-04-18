@@ -30,32 +30,37 @@
     });
 </script>
 
-<body>
 
-    <div class="container">
-        <h2 style="text-align:center; margin-bottom:10px;">Edit Contact</h2>
-        <form action="/home" method="POST" class="text-center border border-light p-5">
-            <div class="form-group">
-                <label for="contactTitle">Contact Title</label>
-                <input type="text" class="form-control" id="contactTitle" placeholder="Contact Title"
-                    value="<%=foundContact.contactTitle%>">
-            </div>
-            <div class="form-group">
-                <label for="contactImage">Contact Page Image URL</label>
-                <input type="text" class="form-control" id="contactImage" placeholder="Contact Page Image URL" value="<%=foundContact.contactImage%>">
-            </div>
-            <div class="form-group">
-                <label for="comSentence">Contact Commercial Sentence</label>
-                <input type="text" class="form-control" id="comSentence" placeholder="Contact Commercial Sentence" value="<%=foundContact.comSentence%>">
-            </div>
-            <div class="form-group">
-                <label for="author">Author</label>
-                <input class="form-control" type="text" id="author" placeholder="Readonly input here…" value="<%= currentUser.username %>" readonly>
-            </div>
-            <textarea name="editor" id="myTextArea"><%=foundContact.aboutText%></textarea>
-            <button id="myButton" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+<div class="container">
+    <h2 style="text-align:center; margin-bottom:10px;">Edit Contact</h2>
+    <form action="/home" method="POST" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="blogTitle">Contact Title</label>
+            <input type="text" class="form-control" id="contactTitle" placeholder="Contact Title" value="<%=foundContact.contactTitle%>" required>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
+        </div>
+        <div class="form-group">
+            <label for="aboutImage">Contact Page Image URL</label>
+            <input type="text" class="form-control" id="contactImage" placeholder="Contact Page Image URL" value="<%=foundContact.contactImage%>">
+        </div>
+        <div class="form-group">
+            <label for="comSentence">Contact Commercial Sentence</label>
+            <input type="text" class="form-control" id="comSentence" placeholder="Contact Commercial Sentence" value="<%=foundContact.comSentence%>" required>
+            <div class="invalid-feedback"> Don't Be Invalid </div>
+            <div class="valid-feedback"> Looks good! </div>
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input class="form-control" type="text" id="author" placeholder="Readonly input here…" value="<%= currentUser.username %>" readonly>
+        </div>
+        <textarea name="editor" id="myTextArea"><%=foundContact.aboutText%></textarea>
+        <div class="invalid-feedback"> Don't Be Invalid </div>
+        <div class="valid-feedback"> Looks good! </div>
+        <button id="myButton" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
     <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('editor');
