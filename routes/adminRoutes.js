@@ -52,11 +52,11 @@ router.post("/signin", passport.authenticate("local", {
 
 });
 
-router.get("/signup", isLoggedIn, (req, res) => {
+router.get("/signup", (req, res) => {
     res.render("admin/signup"); 
 });
 
-router.post("/signup", isLoggedIn, (req, res) => {
+router.post("/signup", (req, res) => {
     let newUser = new User({username : req.body.username});
     User.register(newUser, req.body.password, (err, user) => {
         if(err){
