@@ -1,14 +1,56 @@
 <% include ../partials/header2 %>
 
-<% foundMessages.forEach( (message) => {%>
+<div class="tab-content">
+    <div class="tab-pane active" id="inbox">
 
-    <%=message.name%> <br>
-    <%=message.email%><br>
-    <%=message.phone%><br>
-    <%=message.message%><br>
-    <%=message.date%><br>
-<br><br><br><br>
-<%}); %>
+        <div class="container">
+            <div class="content-container clearfix">
+                <div class="col-md-12">
+                    <h1 class="content-title">Inbox</h1>
 
+                    <input type="search" placeholder="Search Mail" class="form-control mail-search" />
 
-<% include ../partials/footer %>
+                    <ul class="mail-list">
+                        <%
+                            var i = 0;
+                            foundMessages.forEach( (message) => {
+                        %>
+
+                                <li>
+                                    <a href="" data-toggle="modal" data-target="#exampleModalScrollable<%=i%>">
+                                        <span class="mail-sender"><%=message.name%> - <%=message.email%> -  <%=message.phone%> </span>
+                                        <span class="mail-subject"><%=message.date%></span>
+                                        <span class="mail-message-preview"><%=message.message.substring(0,20)%>...</span>
+                                    </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalScrollable<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalScrollableTitle"><%=message.name%></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <%=message.message%>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                        <%
+                                i++;
+                            });
+                        %>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
