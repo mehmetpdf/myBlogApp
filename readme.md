@@ -15,6 +15,8 @@ $ cd myBlogApp
 $ echo MONGODB_STRING=mongodb://localhost/BlogApp > .env
 ```
 
+If you want to connect cloud of mongodb :
+https://codeforgeek.com/2018/03/mongodb-atlas-node-js/
 
 after that;
 ```sh
