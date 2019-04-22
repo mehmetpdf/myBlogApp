@@ -128,7 +128,7 @@ router.post("/editContact", isLoggedIn, (req, res) => {
 });
 
 router.get("/listAllMessages", isLoggedIn, (req, res) => {
-    Message.find({}, (err, foundMessages) => {
+    Message.find({}).sort('-date').exec((err, foundMessages) => {
         if(err) {
             console.log(err);
             res.sendStatus(404).json(foundMessages);

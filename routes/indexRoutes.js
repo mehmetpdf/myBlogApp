@@ -5,7 +5,7 @@ const About         = require("../models/aboutModel");
 const Contact       = require("../models/contactModel");
 
 router.get("/", (req, res) => {
-    Blog.find({}, (err, foundBlogs) => { // find({}) -> Tum Bloglari Al
+    Blog.find({}).sort('-date').exec((err, foundBlogs) => { // find({}) -> Tum Bloglari Al
         if(err){
             console.log("================================ERROR ERROR ERROR================================ ");
             console.log(err);
